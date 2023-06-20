@@ -2,7 +2,6 @@ package validator
 
 import (
 	"regexp"
-	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -27,16 +26,13 @@ func IsUrl(url string) bool {
 
 // Funksiyaga yuborilgan emailni haqiqatdan email yoki yo'qligini tekshiradi
 func IsEmail(email string) bool {
-	parts := strings.Split(email, "@")
-	if len(parts) != 2 {
-		return false
-	}
-	domainParts := strings.Split(parts[1], ".")
-	if len(domainParts) < 2 {
-		return false
-	} else {
-		return true
-	}
+	pattern := `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+
+	// Compile the regular expression pattern
+	regex := regexp.MustCompile(pattern)
+
+	// Check if the email matches the pattern
+	return regex.MatchString(email)
 }
 
 // Agar time o'zgaruvchi null bo'lsa funksiya true qaytaradi aks holda false
