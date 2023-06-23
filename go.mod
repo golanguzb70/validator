@@ -1,5 +1,5 @@
-module gitlab.com/validator
+module github.com/golanguzb70/validator
 
-go 1.18
+go 1.20
 
 require github.com/google/uuid v1.3.0
